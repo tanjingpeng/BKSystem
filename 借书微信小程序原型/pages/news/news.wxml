@@ -1,0 +1,30 @@
+<!--index.wxml-->
+
+<template name="item">
+  <view class="item">
+    <image class="item-img" bindtap="imgShow" data-list="{{imgArr}}" data-src="{{picUrl}}" src="{{picUrl}}" mode="aspectFill"></image>
+    <!-- <text class="label_title">{{imgArr[index].title}}</text>
+    <text class="label_time">{{imgArr[index].ctime}}</text> -->
+  </view>
+</template>
+
+<view class="body-view">
+  <loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+  </loading>
+</view>
+
+<view enable-back-to-top="true" scroll-y="true" class="content">
+  <view class="left">
+    <block wx:for="{{imgArr}}" wx:for-item="imgItem" wx:key="imglist_{{index}}">
+      <template is="item" data="{{picUrl:imgItem}}" wx:if="{{index%2==0}}"></template>
+    </block>
+  </view>
+  <view class="right">
+    <block wx:for="{{imgArr}}" wx:for-item="imgItem" wx:key="imglist_{{index}}">
+      <template is="item" data="{{picUrl:imgItem}}" wx:if="{{index%2==1}}"></template>
+    </block>
+  </view>
+
+  <view class="loading" hidden="{{!showLoadMore}}">正在载入更多...</view>
+</view>
